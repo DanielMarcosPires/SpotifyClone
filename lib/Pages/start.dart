@@ -20,7 +20,7 @@ class _StartState extends State<Start> {
           TextButton(onPressed: (){}, child: Text("Podcasts")),
         ],
       ),
-      body: Text(""),
+      body: Text("oiee"),
     );
   }
 }
