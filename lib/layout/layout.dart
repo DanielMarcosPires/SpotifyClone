@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
 import 'package:spotify/Pages/start.dart';
 
 class Layout extends StatefulWidget {
