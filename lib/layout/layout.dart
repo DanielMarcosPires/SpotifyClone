@@ -15,7 +15,12 @@ class _LayoutState extends State<Layout> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Theme.of(context).primaryColor,
-      body: <Widget>[Start(), Text("oi")][currentPageIndex],
+      body: <Widget>[
+        Start(),
+        Text("Buscar"),
+        Text("biblioteca"),
+        Text("Mais")
+      ][currentPageIndex],
       bottomNavigationBar: NavigationBar(
           onDestinationSelected: (int index) {
             setState(() {
@@ -25,6 +30,7 @@ class _LayoutState extends State<Layout> {
           backgroundColor: Theme.of(context).primaryColor,
           indicatorShape:
               RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+          labelBehavior: NavigationDestinationLabelBehavior.onlyShowSelected,
           selectedIndex: currentPageIndex,
           destinations: <Widget>[
             const NavigationDestination(

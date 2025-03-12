@@ -15,14 +15,18 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(
             seedColor: Colors.green,
-            surface: Colors.black,
+            surface: Colors.black12,
             primary: Colors.white,
-            secondaryContainer: Colors.green,
+            secondaryContainer: Colors.green.shade600,
             brightness: Brightness.dark,
-            contrastLevel: 0.0),
+            contrastLevel: .7
+        ),
         useMaterial3: true,
       ),
-      home: Layout(),
+      home: Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: Layout(),
+      ),
     );
   }
 }
