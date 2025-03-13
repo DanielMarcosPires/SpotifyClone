@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:spotify/Pages/start.dart';
+import 'package:spotify/Pages/Search/Search.dart';
+import 'package:spotify/Pages/Start/start.dart';
 
 class Layout extends StatefulWidget {
   const Layout({super.key});
@@ -17,7 +18,7 @@ class _LayoutState extends State<Layout> {
       backgroundColor: Theme.of(context).primaryColor,
       body: <Widget>[
         Start(),
-        Text("Buscar"),
+        Search(),
         Text("biblioteca"),
         Text("Mais")
       ][currentPageIndex],

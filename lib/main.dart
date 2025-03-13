@@ -19,8 +19,9 @@ class MyApp extends StatelessWidget {
             primary: Colors.white,
             secondaryContainer: Colors.green.shade600,
             brightness: Brightness.dark,
-            contrastLevel: .7
+            contrastLevel: 1
         ),
+
         useMaterial3: true,
       ),
       home: Padding(

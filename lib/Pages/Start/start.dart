@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:spotify/Components/playlist.dart';
+import 'package:spotify/Pages/Start/Components/Library/library.dart';
+import 'package:spotify/Pages/Start/Components/ScrollingCatalog/scrolling-catalog.dart';
 
 class Start extends StatefulWidget {
   const Start({super.key});
@@ -9,13 +11,16 @@ class Start extends StatefulWidget {
 }
 
 class _StartState extends State<Start> {
-  String dropdownValue = 'Música';
+  String dropdownValue = 'Tudo';
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+          elevation: 0,
           leadingWidth: 50,
+          surfaceTintColor: Colors.transparent,
+          backgroundColor: Colors.black,
           leading: Container(
             alignment: Alignment.center,
             decoration: BoxDecoration(
@@ -63,30 +68,24 @@ class _StartState extends State<Start> {
               })),
       body: Padding(
         padding: const EdgeInsets.fromLTRB(0, 10, 0, 0),
-        child: Column(
+        child: ListView(
+          scrollDirection: Axis.vertical,
           children: [
-            Wrap(
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Playlist(
-                  src: 'orquestra',
-                  title: 'Hinos Orquestrados',
+                Library(),
+                ScrollingCatalog(
+                  title: 'Recomendado para hoje',
                 ),
-                Playlist(
-                  src: 'orquestraSacra',
-                  title: 'Orquestra Sacros Cordas e Corne Inglês',
+                ScrollingCatalog(
+                  title: 'Descoberta para você',
                 ),
-                Playlist(src: "bibliaFalada", title: "Biblia Falada"),
-                Playlist(
-                  src: 'orquestra',
-                  title: 'Hinos Orquestrados',
+                ScrollingCatalog(
+                  title: 'Recentes',
                 ),
-                Playlist(
-                  src: 'orquestraSacra',
-                  title: 'Orquestra Sacros Cordas e Corne Inglês',
-                ),
-                Playlist(src: "bibliaFalada", title: "Biblia Falada"),
               ],
-            ),
+            )
           ],
         ),
       ),
