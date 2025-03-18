@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:spotify/Pages/LibraryPage/LibraryPage.dart';
 import 'package:spotify/Pages/Search/Search.dart';
 import 'package:spotify/Pages/Start/start.dart';
 
@@ -19,7 +20,7 @@ class _LayoutState extends State<Layout> {
       body: <Widget>[
         Start(),
         Search(),
-        Text("biblioteca"),
+        Librarypage(),
         Text("Mais")
       ][currentPageIndex],
       bottomNavigationBar: NavigationBar(

@@ -72,6 +72,7 @@ class _StartState extends State<Start> {
           scrollDirection: Axis.vertical,
           children: [
             Column(
+              spacing: 2,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Library(),
