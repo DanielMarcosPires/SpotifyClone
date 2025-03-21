@@ -78,12 +78,81 @@ class _StartState extends State<Start> {
                 Library(),
                 ScrollingCatalog(
                   title: 'Recomendado para hoje',
+                  playlists: [
+                    {
+                      "title": "Orquestra Sacra",
+                      "src":
+                          "https://pickasso.spotifycdn.com/image/ab67c0de0000deef/dt/v1/img/daily/1/ab67616d0000b273f51e01f3d362a48fd49b1ca2/pt",
+                      "filter": "Música",
+                      "color": "0xff80deea"
+                    },
+                    {
+                      "title": "Dire Straits",
+                      "src":
+                          "https://pickasso.spotifycdn.com/image/ab67c0de0000deef/dt/v1/img/daily/2/ab6761610000e5eb4bdaa8c5e65b64f50549c393/pt",
+                      "filter": "Música",
+                      "color": "0xFFFFFF176"
+                    },
+                    {
+                      "title": "Dire Straits",
+                      "src":
+                          "https://pickasso.spotifycdn.com/image/ab67c0de0000deef/dt/v1/img/daily/4/ab6761610000e5ebe7c9399d0b5d813c20cbec65/pt",
+                      "filter": "Música",
+                      "color": "0xFFCE93D8"
+                    },
+                  ],
                 ),
                 ScrollingCatalog(
                   title: 'Descoberta para você',
+                  playlists: [
+                    {
+                      "title": "Orquestra Sacra",
+                      "src":
+                      "https://pickasso.spotifycdn.com/image/ab67c0de0000deef/dt/v1/img/daily/1/ab67616d0000b273f51e01f3d362a48fd49b1ca2/pt",
+                      "filter": "Música",
+                      "color": "0xff80deea"
+                    },
+                    {
+                      "title": "Dire Straits",
+                      "src":
+                      "https://pickasso.spotifycdn.com/image/ab67c0de0000deef/dt/v1/img/daily/2/ab6761610000e5eb4bdaa8c5e65b64f50549c393/pt",
+                      "filter": "Música",
+                      "color": "0xFFFFFF176"
+                    },
+                    {
+                      "title": "Dire Straits",
+                      "src":
+                      "https://pickasso.spotifycdn.com/image/ab67c0de0000deef/dt/v1/img/daily/4/ab6761610000e5ebe7c9399d0b5d813c20cbec65/pt",
+                      "filter": "Música",
+                      "color": "0xFFCE93D8"
+                    },
+                  ],
                 ),
                 ScrollingCatalog(
                   title: 'Recentes',
+                  playlists: [
+                    {
+                      "title": "Orquestra Sacra",
+                      "src":
+                      "https://pickasso.spotifycdn.com/image/ab67c0de0000deef/dt/v1/img/daily/1/ab67616d0000b273f51e01f3d362a48fd49b1ca2/pt",
+                      "filter": "Música",
+                      "color": "0xff80deea"
+                    },
+                    {
+                      "title": "Dire Straits",
+                      "src":
+                      "https://pickasso.spotifycdn.com/image/ab67c0de0000deef/dt/v1/img/daily/2/ab6761610000e5eb4bdaa8c5e65b64f50549c393/pt",
+                      "filter": "Música",
+                      "color": "0xFFFFFF176"
+                    },
+                    {
+                      "title": "Dire Straits",
+                      "src":
+                      "https://pickasso.spotifycdn.com/image/ab67c0de0000deef/dt/v1/img/daily/4/ab6761610000e5ebe7c9399d0b5d813c20cbec65/pt",
+                      "filter": "Música",
+                      "color": "0xFFCE93D8"
+                    },
+                  ],
                 ),
               ],
             )
