@@ -137,28 +137,45 @@ class Page2 extends StatelessWidget {
       floatingActionButtonLocation: FloatingActionButtonLocation.startTop,
       body: Column(
         children: [
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              SizedBox(
-                width: 400 / 1.4, // Garante que o fundo cubra toda a largura
-                height: 400 / 1.4, // Garante que o fundo cubra toda a altura
-                child: Card(
-                  child: Center(
-                    // Centraliza a imagem no meio da tela
-                    child: ClipRRect(
-                      borderRadius: BorderRadius.circular(10),
-                      child: Image.network(
-                        url,
-                        width: 400 / 1.5, // Ajusta o tamanho da imagem
-                        fit: BoxFit.contain, // Evita cortes na imagem
+          Padding(
+            padding: const EdgeInsets.fromLTRB(0, 35, 0, 0),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                SizedBox(
+                  width: 400 / 1.4, // Garante que o fundo cubra toda a largura
+                  height: 400 / 1.4, // Garante que o fundo cubra toda a altura
+                  child: Card(
+                    child: Center(
+                      // Centraliza a imagem no meio da tela
+                      child: ClipRRect(
+                        borderRadius: BorderRadius.circular(10),
+                        child: Image.network(
+                          url,
+                          width: 400 / 1.5, // Ajusta o tamanho da imagem
+                          fit: BoxFit.contain, // Evita cortes na imagem
+                        ),
                       ),
                     ),
                   ),
                 ),
-              ),
-            ],
+              ],
+            ),
           ),
+          Padding(
+            padding: const EdgeInsets.fromLTRB(20*2,10,0,0),
+            child: Row(
+              children: [
+                Text(
+                  "Orquestra Sacra",
+                  style: TextStyle(
+                      fontWeight: FontWeight.bold,
+                      fontSize:
+                          Theme.of(context).textTheme.headlineMedium?.fontSize),
+                )
+              ],
+            ),
+          )
         ],
       ),
     );
