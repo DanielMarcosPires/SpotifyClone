@@ -20,6 +20,15 @@ class SecondPage extends StatefulWidget {
 
 class _SecondPageState extends State<SecondPage> {
   bool isPlaying = false; // Mover a variável para fora do build()
+  double _currentSliderValue = 0;
+
+  String formatDuration(double seconds) {
+    int minutes =
+        (seconds ~/ 60); // Divide os segundos por 60 para obter os minutos
+    int remainingSeconds =
+        (seconds % 60).toInt(); // Obtém os segundos restantes
+    return '$minutes:${remainingSeconds.toString().padLeft(2, '0')}'; // Garante que tenha dois dígitos
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -35,6 +44,7 @@ class _SecondPageState extends State<SecondPage> {
       body: Padding(
         padding: const EdgeInsets.fromLTRB(20 * 2, 35, 20 * 2, 0),
         child: Column(
+          spacing: 3,
           children: [
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
@@ -90,7 +100,8 @@ class _SecondPageState extends State<SecondPage> {
                       fit: BoxFit.contain,
                     ),
                   ),
-                  SizedBox(width: 4), // Adiciona um espaçamento entre a imagem e o texto
+                  SizedBox(width: 4),
+                  // Adiciona um espaçamento entre a imagem e o texto
                   Text(widget.playlistName, style: TextStyle(fontSize: 18))
                 ],
               ),
@@ -107,29 +118,53 @@ class _SecondPageState extends State<SecondPage> {
                 ],
               ),
             ),
-            Padding(
-              padding: const EdgeInsets.fromLTRB(0, 10, 0, 0),
-              child: Row(
-                children: [
-                  SizedBox(
-                    width: 25 * 2.3,
-                    height: 25 * 2.3,
-                    child: ElevatedButton(
-                      onPressed: () {
-                        setState(() {
-                          isPlaying = !isPlaying; // Alterna entre play e pause
-                        });
-                      },
-                      style: ElevatedButton.styleFrom(
-                        backgroundColor: Color(0xFF1DB954),
-                        padding: EdgeInsets.zero, // Remove o padding interno do botão
+            Card(
+              color: Theme.of(context).colorScheme.surfaceDim,
+              child: Padding(
+                padding: const EdgeInsets.fromLTRB(5, 10, 5, 10),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                  children: [
+                    SizedBox(
+                      width: 25 * 2.3,
+                      height: 25 * 2.3,
+                      child: ElevatedButton(
+                        onPressed: () {
+                          setState(() {
+                            isPlaying =
+                                !isPlaying; // Alterna entre play e pause
+                          });
+                        },
+                        style: ElevatedButton.styleFrom(
+                          backgroundColor: Color(0xFF1DB954),
+                          padding: EdgeInsets
+                              .zero, // Remove o padding interno do botão
+                        ),
+                        child: Center(
+                          child: Icon(
+                            isPlaying ? Icons.pause : Icons.play_arrow,
+                            size: 25 * 1.5,
+                            color: Colors.black,
+                          ),
+                        ), // Alterna entre os ícones
                       ),
-                      child: Center(
-                        child: Icon(isPlaying ? Icons.pause : Icons.play_arrow,size: 25*1.5,color: Colors.black,),
-                      ), // Alterna entre os ícones
                     ),
-                  ),
-                ],
+                    Row(
+                      children: [
+                        Slider(
+                            value: _currentSliderValue,
+                            onChanged: (value) {
+                              setState(() {
+                                _currentSliderValue = value;
+                              });
+                            },
+                            activeColor: Color(0xFF1DB954)),
+                        Text(formatDuration(_currentSliderValue),
+                            style: TextStyle(fontSize: 18))
+                      ],
+                    ),
+                  ],
+                ),
               ),
             )
           ],
