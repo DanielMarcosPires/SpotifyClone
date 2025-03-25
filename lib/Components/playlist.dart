@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
 
+import '../Pages/Start/second_page.dart';
+
 class Playlist extends StatelessWidget {
   final String src;
   final String title;
   final double size;
+  final String playlistName;
   final Color color; // Agora usa Color diretamente
 
   const Playlist({
@@ -11,6 +14,7 @@ class Playlist extends StatelessWidget {
     required this.src,
     required this.color,
     required this.title,
+    required this.playlistName,
     required this.size,
   });
 
@@ -18,7 +22,7 @@ class Playlist extends StatelessWidget {
   Widget build(BuildContext context) {
     return TextButton(
       onPressed: () {
-        Navigator.of(context).push(_createRoute(title, src, color));
+        Navigator.of(context).push(_createRoute(title, src,playlistName, color));
       },
       style: ButtonStyle(
         backgroundColor: WidgetStatePropertyAll(
@@ -56,7 +60,7 @@ class Playlist extends StatelessWidget {
   }
 }
 
-Route _createRoute(String titleRoute, String urlRoute, Color color) {
+Route _createRoute(String titleRoute, String urlRoute,String playlistName, Color color) {
   return PageRouteBuilder(
     pageBuilder: (context, animation, secondaryAnimation) {
       return Container(
@@ -68,13 +72,11 @@ Route _createRoute(String titleRoute, String urlRoute, Color color) {
             stops: const [0.5, 1.0],
           ),
         ),
-        child: Scaffold(
-          backgroundColor: Colors.transparent,
-          body: Page2(
-            title: titleRoute,
-            url: urlRoute,
-            color: color,
-          ),
+        child:SecondPage(
+          title: titleRoute,
+          url: urlRoute,
+          playlistName: playlistName,
+          color: color,
         ),
       );
     },
@@ -92,73 +94,4 @@ Route _createRoute(String titleRoute, String urlRoute, Color color) {
       );
     },
   );
-}
-
-class Page2 extends StatelessWidget {
-  final String title;
-  final String url;
-  final Color color;
-
-  const Page2({
-    super.key,
-    required this.title,
-    required this.url,
-    required this.color,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          Navigator.of(context).pop();
-        },
-        backgroundColor: color,
-        child: Icon(Icons.arrow_back_outlined,color: Colors.white),
-      ),
-      floatingActionButtonLocation: FloatingActionButtonLocation.startTop,
-      body: Column(
-        children: [
-          Padding(
-            padding: const EdgeInsets.fromLTRB(0, 35, 0, 0),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                SizedBox(
-                  width: 400 / 1.4,
-                  height: 400 / 1.4,
-                  child: Card(
-                    child: Center(
-                      child: ClipRRect(
-                        borderRadius: BorderRadius.circular(10),
-                        child: Image.network(
-                          url,
-                          width: 400 / 1.5,
-                          fit: BoxFit.contain,
-                        ),
-                      ),
-                    ),
-                  ),
-                ),
-              ],
-            ),
-          ),
-          Padding(
-            padding: const EdgeInsets.fromLTRB(20 * 2, 10, 0, 0),
-            child: Row(
-              children: [
-                Text(
-                  title,
-                  style: TextStyle(
-                    fontWeight: FontWeight.bold,
-                    fontSize: Theme.of(context).textTheme.headlineMedium?.fontSize,
-                  ),
-                )
-              ],
-            ),
-          )
-        ],
-      ),
-    );
-  }
 }

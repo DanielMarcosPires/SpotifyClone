@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 
+import '../../second_page.dart';
+
 class ScrollingCatalog extends StatefulWidget {
   final String title;
-  final List<Map<String, String>> playlists;
+  final List<Map<String, dynamic>> playlists;
 
   const ScrollingCatalog(
       {super.key, required this.title, required this.playlists});
@@ -39,9 +41,11 @@ class _ScrollingCatalogState extends State<ScrollingCatalog> {
                         return TextButton(
                             onPressed: () {
                               Navigator.of(context).push(_createRoute(
-                                  playlist['title'] ?? "",
-                                  playlist['src'] ?? "",
-                                  playlist['color'] ?? ""));
+                                playlist['title'] ?? "",
+                                playlist['src'] ?? "",
+                                Color(playlist['color'] ??
+                                    0xFFFFFFFF), // Certifica que é uma cor válida
+                              ));
                             },
                             style: ButtonStyle(
                               shape: WidgetStatePropertyAll(
@@ -75,13 +79,13 @@ class _ScrollingCatalogState extends State<ScrollingCatalog> {
   }
 }
 
-Route _createRoute(String titleRoute, String urlRoute, String color) {
+Route _createRoute(String titleRoute, String urlRoute, Color color) {
   return PageRouteBuilder(
     pageBuilder: (context, animation, secondaryAnimation) {
       return Container(
         decoration: BoxDecoration(
           gradient: LinearGradient(
-              colors: [Colors.black, Color(int.parse(color))],
+              colors: [Colors.black, color],
               // Cores do gradiente
               begin: Alignment.bottomCenter,
               // Início do gradiente
@@ -89,14 +93,11 @@ Route _createRoute(String titleRoute, String urlRoute, String color) {
               // Fim do gradiente
               stops: const [0.5, 1.0]),
         ),
-        child: Scaffold(
-          backgroundColor: Colors.transparent,
-          // Deixa o fundo transparente para mostrar o gradiente
-          body: Page2(
-            title: titleRoute,
-            url: urlRoute,
-            color: color,
-          ),
+        child: SecondPage(
+          title: titleRoute,
+          url: urlRoute,
+          color: color,
+          playlistName: '',
         ),
       );
     },
@@ -116,68 +117,68 @@ Route _createRoute(String titleRoute, String urlRoute, String color) {
   );
 }
 
-class Page2 extends StatelessWidget {
-  final String title;
-  final String url;
-  final String color;
-
-  const Page2(
-      {super.key, required this.title, required this.url, required this.color});
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          Navigator.of(context).pop();
-        },
-        backgroundColor: Color(int.parse(color)),
-        child: Icon(Icons.arrow_back_outlined),
-      ),
-      floatingActionButtonLocation: FloatingActionButtonLocation.startTop,
-      body: Column(
-        children: [
-          Padding(
-            padding: const EdgeInsets.fromLTRB(0, 35, 0, 0),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                SizedBox(
-                  width: 400 / 1.4, // Garante que o fundo cubra toda a largura
-                  height: 400 / 1.4, // Garante que o fundo cubra toda a altura
-                  child: Card(
-                    child: Center(
-                      // Centraliza a imagem no meio da tela
-                      child: ClipRRect(
-                        borderRadius: BorderRadius.circular(10),
-                        child: Image.network(
-                          url,
-                          width: 400 / 1.5, // Ajusta o tamanho da imagem
-                          fit: BoxFit.contain, // Evita cortes na imagem
-                        ),
-                      ),
-                    ),
-                  ),
-                ),
-              ],
-            ),
-          ),
-          Padding(
-            padding: const EdgeInsets.fromLTRB(20*2,10,0,0),
-            child: Row(
-              children: [
-                Text(
-                  "Orquestra Sacra",
-                  style: TextStyle(
-                      fontWeight: FontWeight.bold,
-                      fontSize:
-                          Theme.of(context).textTheme.headlineMedium?.fontSize),
-                )
-              ],
-            ),
-          )
-        ],
-      ),
-    );
-  }
-}
+// class Page2 extends StatelessWidget {
+//   final String title;
+//   final String url;
+//   final String color;
+//
+//   const Page2(
+//       {super.key, required this.title, required this.url, required this.color});
+//
+//   @override
+//   Widget build(BuildContext context) {
+//     return Scaffold(
+//       floatingActionButton: FloatingActionButton(
+//         onPressed: () {
+//           Navigator.of(context).pop();
+//         },
+//         backgroundColor: Color(int.parse(color)),
+//         child: Icon(Icons.arrow_back_outlined),
+//       ),
+//       floatingActionButtonLocation: FloatingActionButtonLocation.startTop,
+//       body: Column(
+//         children: [
+//           Padding(
+//             padding: const EdgeInsets.fromLTRB(0, 35, 0, 0),
+//             child: Row(
+//               mainAxisAlignment: MainAxisAlignment.center,
+//               children: [
+//                 SizedBox(
+//                   width: 400 / 1.4, // Garante que o fundo cubra toda a largura
+//                   height: 400 / 1.4, // Garante que o fundo cubra toda a altura
+//                   child: Card(
+//                     child: Center(
+//                       // Centraliza a imagem no meio da tela
+//                       child: ClipRRect(
+//                         borderRadius: BorderRadius.circular(10),
+//                         child: Image.network(
+//                           url,
+//                           width: 400 / 1.5, // Ajusta o tamanho da imagem
+//                           fit: BoxFit.contain, // Evita cortes na imagem
+//                         ),
+//                       ),
+//                     ),
+//                   ),
+//                 ),
+//               ],
+//             ),
+//           ),
+//           Padding(
+//             padding: const EdgeInsets.fromLTRB(20*2,10,0,0),
+//             child: Row(
+//               children: [
+//                 Text(
+//                   "Orquestra Sacra",
+//                   style: TextStyle(
+//                       fontWeight: FontWeight.bold,
+//                       fontSize:
+//                           Theme.of(context).textTheme.headlineMedium?.fontSize),
+//                 )
+//               ],
+//             ),
+//           )
+//         ],
+//       ),
+//     );
+//   }
+// }
